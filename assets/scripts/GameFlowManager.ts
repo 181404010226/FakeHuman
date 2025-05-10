@@ -1,6 +1,6 @@
 import { _decorator, Component, Node, resources, sp, Asset, Button } from 'cc';
 import { DataManager } from './DataManager';
-import { CharacterMovementManager } from './CharacterMovementManager';
+import { CharacterManager } from './CharacterManager';
 import { QuestionAnswerManager } from './QuestionAnswerManager';
 
 const { ccclass, property } = _decorator;
@@ -14,22 +14,16 @@ export class GameFlowManager extends Component {
     dataManager: DataManager = null;
 
     @property({
-        type: CharacterMovementManager,
-        tooltip: '人物移动管理器引用'
+        type: CharacterManager,
+        tooltip: '角色管理器引用'
     })
-    characterMovementManager: CharacterMovementManager = null;
+    characterManager: CharacterManager = null;
 
     @property({
         type: QuestionAnswerManager,
         tooltip: '问答管理器引用'
     })
     questionAnswerManager: QuestionAnswerManager = null;
-
-    @property({
-        type: Node,
-        tooltip: '角色显示节点（用于设置骨骼动画）'
-    })
-    characterSkeletonNode: Node = null;
 
     @property({
         type: Button,
@@ -117,52 +111,13 @@ export class GameFlowManager extends Component {
         const npc = this.currentNpcs[this.currentNpcIndex];
         
         // 配置角色外观
-        this.setupCharacterAppearance(npc.characterId, npc.skinName);
+        this.characterManager.setupCharacterAppearance(npc.characterId, npc.skinName);
         
         // 配置问答对
         this.setupQuestionAnswers(npc.qaPairs);
         
         // 让角色入场
-        this.characterMovementManager.characterEnter();
-    }
-
-    /**
-     * 设置角色外观
-     * @param characterId 角色ID
-     * @param skinName 皮肤名称
-     */
-    private setupCharacterAppearance(characterId: number, skinName: string): void {
-        if (!this.characterSkeletonNode) {
-            console.error('角色骨骼节点未设置');
-            return;
-        }
-
-        // 构建角色资源路径（左边补0确保两位数）
-        const characterFolderName = characterId < 10 ? `0${characterId}` : `${characterId}`;
-        const characterPath = `${characterFolderName}`;
-        
-        // 加载角色骨骼动画资源
-        resources.load(`${characterPath}/${characterId}`, sp.SkeletonData, (err, skeletonData) => {
-            if (err) {
-                console.error(`加载角色资源失败: ${characterPath}/${characterId}`, err);
-                return;
-            }
-            
-            // 获取骨骼动画组件
-            const skeletonComponent = this.characterSkeletonNode.getComponent(sp.Skeleton);
-            if (skeletonComponent) {
-                // 设置骨骼数据
-                skeletonComponent.skeletonData = skeletonData;
-
-                skeletonComponent.setSkin(skinName);
-
-                skeletonComponent.setAnimation(0, 'loop', true);
-              
-                console.log(`设置角色: ${characterId}, 皮肤: ${skinName}`);
-            } else {
-                console.error('角色节点上没有sp.Skeleton组件');
-            }
-        });
+        this.characterManager.characterEnter();
     }
 
     /**
@@ -184,12 +139,12 @@ export class GameFlowManager extends Component {
      */
     public handleCharacterPassed(): void {
         // 让角色向右移动
-        this.characterMovementManager.moveCharacterRight();
+        this.characterManager.moveCharacterRight();
         
         // 延迟显示下一个NPC
         this.scheduleOnce(() => {
             this.showNextNpc();
-        }, this.characterMovementManager.moveDuration + 0.5);
+        }, this.characterManager.moveDuration + 0.5);
     }
 
     /**
@@ -197,12 +152,12 @@ export class GameFlowManager extends Component {
      */
     public handleCharacterDismissed(): void {
         // 让角色向左移动
-        this.characterMovementManager.moveCharacterLeft();
+        this.characterManager.moveCharacterLeft();
         
         // 延迟显示下一个NPC
         this.scheduleOnce(() => {
             this.showNextNpc();
-        }, this.characterMovementManager.moveDuration + 0.5);
+        }, this.characterManager.moveDuration + 0.5);
     }
 
     /**

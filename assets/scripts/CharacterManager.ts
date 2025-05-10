@@ -1,9 +1,9 @@
-import { _decorator, Component, Node, Button, Vec3, tween, Tween } from 'cc';
+import { _decorator, Component, Node, Button, Vec3, tween, Tween, resources, sp } from 'cc';
 import { DialogueManager } from './DialogueManager';
 const { ccclass, property } = _decorator;
 
-@ccclass('CharacterMovementManager')
-export class CharacterMovementManager extends Component {
+@ccclass('CharacterManager')
+export class CharacterManager extends Component {
     @property({
         type: DialogueManager,
         tooltip: '对话框管理器'
@@ -55,10 +55,46 @@ export class CharacterMovementManager extends Component {
         if (this.dismissButton) {
             this.dismissButton.node.on(Button.EventType.CLICK, this.moveCharacterLeft, this);
         }
-        
-    
     }
     
+    /**
+     * 设置角色外观
+     * @param characterId 角色ID
+     * @param skinName 皮肤名称
+     */
+    public setupCharacterAppearance(characterId: number, skinName: string): void {
+        if (!this.characterNode) {
+            console.error('人物节点未设置');
+            return;
+        }
+
+        // 构建角色资源路径（左边补0确保两位数）
+        const characterFolderName = characterId < 10 ? `0${characterId}` : `${characterId}`;
+        const characterPath = `${characterFolderName}`;
+        
+        // 加载角色骨骼动画资源
+        resources.load(`${characterPath}/${characterId}`, sp.SkeletonData, (err, skeletonData) => {
+            if (err) {
+                console.error(`加载角色资源失败: ${characterPath}/${characterId}`, err);
+                return;
+            }
+            
+            // 获取骨骼动画组件
+            const skeletonComponent = this.characterNode.getComponent(sp.Skeleton);
+            if (skeletonComponent) {
+                // 设置骨骼数据
+                skeletonComponent.skeletonData = skeletonData;
+
+                skeletonComponent.setSkin(skinName);
+
+                skeletonComponent.setAnimation(0, 'loop', true);
+              
+                console.log(`设置角色: ${characterId}, 皮肤: ${skinName}`);
+            } else {
+                console.error('人物节点上没有sp.Skeleton组件');
+            }
+        });
+    }
 
     /**
      * 人物移动到右侧（放行）
