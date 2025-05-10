@@ -1,0 +1,90 @@
+{
+  "name": "测试关卡1",
+  "description": "这是一个示例关卡，包含真人和伪人NPC",
+  "npcs": [
+    {
+      "type": "real",
+      "characterId": 1,
+      "characterName": "角色1",
+      "skinId": 1,
+      "skinName": "1",
+      "qaPairs": [
+        {
+          "question": "你是谁？",
+          "answer": "我是新来的，刚搬到这个小区，很高兴认识你！"
+        },
+        {
+          "question": "你知道这里最近发生了什么事吗？",
+          "answer": "我听说这里最近有些奇怪的事情，但我也是刚来，不太清楚具体情况。"
+        },
+        {
+          "question": "你昨晚在哪里？",
+          "answer": "昨晚我在家里整理行李，搬家很累，所以早早就休息了。"
+        }
+      ]
+    },
+    {
+      "type": "fake",
+      "characterId": 3,
+      "characterName": "角色3",
+      "skinId": 1,
+      "skinName": "3",
+      "qaPairs": [
+        {
+          "question": "你是谁？",
+          "answer": "我是小区的老住户了，住在这已经五年了。"
+        },
+        {
+          "question": "你知道小区里的密码是什么？",
+          "answer": "当然，密码是8264，所有老住户都知道。"
+        },
+        {
+          "question": "你最喜欢小区的哪个设施？",
+          "answer": "我最喜欢小区的游泳池，每天早上我都会去那里锻炼。"
+        }
+      ]
+    },
+    {
+      "type": "real",
+      "characterId": 5,
+      "characterName": "角色5",
+      "skinId": 1,
+      "skinName": "5",
+      "qaPairs": [
+        {
+          "question": "你在这里做什么工作？",
+          "answer": "我是小区的保安，负责维护这里的安全。"
+        },
+        {
+          "question": "最近有什么异常情况吗？",
+          "answer": "确实有些奇怪的事情，有居民反映看到陌生人在小区里晃悠，但监控没有拍到。"
+        },
+        {
+          "question": "你认识那个新搬来的住户吗？",
+          "answer": "你说的是1号楼的新住户吧？他昨天才搬来，看起来是个不错的人。"
+        }
+      ]
+    },
+    {
+      "type": "fake",
+      "characterId": 7,
+      "characterName": "角色7",
+      "skinId": 1,
+      "skinName": "6",
+      "qaPairs": [
+        {
+          "question": "你是做什么的？",
+          "answer": "我是快递员，经常来这个小区送快递。"
+        },
+        {
+          "question": "你今天送了多少个包裹？",
+          "answer": "今天特别忙，已经送了超过50个包裹了。"
+        },
+        {
+          "question": "你最近有遇到什么奇怪的事情吗？",
+          "answer": "没有啊，一切都很正常。不过我建议你晚上不要出门，不太安全。"
+        }
+      ]
+    }
+  ]
+}

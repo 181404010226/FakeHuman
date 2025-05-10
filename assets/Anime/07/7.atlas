@@ -1,0 +1,144 @@
+
+7.png
+size: 1806,1526
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+7_1
+  rotate: true
+  xy: 795, 764
+  size: 760, 1009
+  orig: 760, 1009
+  offset: 0, 0
+  index: -1
+7_3
+  rotate: true
+  xy: 769, 2
+  size: 760, 1009
+  orig: 760, 1009
+  offset: 0, 0
+  index: -1
+7_51
+  rotate: true
+  xy: 353, 1432
+  size: 92, 100
+  orig: 92, 100
+  offset: 0, 0
+  index: -1
+7_52
+  rotate: true
+  xy: 455, 1432
+  size: 92, 100
+  orig: 92, 100
+  offset: 0, 0
+  index: -1
+7_53
+  rotate: true
+  xy: 2, 1512
+  size: 12, 37
+  orig: 12, 37
+  offset: 0, 0
+  index: -1
+7_54
+  rotate: false
+  xy: 41, 1505
+  size: 23, 19
+  orig: 23, 19
+  offset: 0, 0
+  index: -1
+7_55
+  rotate: false
+  xy: 2, 431
+  size: 765, 997
+  orig: 765, 997
+  offset: 0, 0
+  index: -1
+7_61
+  rotate: false
+  xy: 557, 1430
+  size: 236, 94
+  orig: 236, 94
+  offset: 0, 0
+  index: -1
+7_72
+  rotate: false
+  xy: 243, 1485
+  size: 42, 39
+  orig: 42, 39
+  offset: 0, 0
+  index: -1
+7_73
+  rotate: false
+  xy: 66, 1494
+  size: 44, 30
+  orig: 44, 30
+  offset: 0, 0
+  index: -1
+7_74
+  rotate: false
+  xy: 112, 1494
+  size: 65, 30
+  orig: 65, 30
+  offset: 0, 0
+  index: -1
+7_75
+  rotate: false
+  xy: 179, 1488
+  size: 62, 36
+  orig: 62, 36
+  offset: 0, 0
+  index: -1
+light01x
+  rotate: false
+  xy: 287, 1460
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+
+72.png
+size: 2024,1526
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+7_4
+  rotate: true
+  xy: 2, 764
+  size: 760, 1009
+  orig: 760, 1009
+  offset: 0, 0
+  index: -1
+7_64
+  rotate: true
+  xy: 1013, 764
+  size: 760, 1009
+  orig: 760, 1009
+  offset: 0, 0
+  index: -1
+7_71
+  rotate: true
+  xy: 2, 2
+  size: 760, 1009
+  orig: 760, 1009
+  offset: 0, 0
+  index: -1
+7_8
+  rotate: true
+  xy: 1013, 2
+  size: 760, 1009
+  orig: 760, 1009
+  offset: 0, 0
+  index: -1
+
+73.png
+size: 797,1026
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+7_2
+  rotate: false
+  xy: 2, 2
+  size: 793, 1022
+  orig: 793, 1022
+  offset: 0, 0
+  index: -1
