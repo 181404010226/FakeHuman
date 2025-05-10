@@ -45,6 +45,7 @@ export class CharacterManager extends Component {
         // 记录人物初始位置
         if (this.characterNode) {
             this.initialPosition = this.characterNode.position.clone();
+            this.initialPosition.x += 400; // 初始位置的x坐标增加400
         }
 
         // 设置按钮事件监听
