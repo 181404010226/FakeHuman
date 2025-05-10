@@ -61,8 +61,9 @@ export class CharacterManager extends Component {
      * 设置角色外观
      * @param characterId 角色ID
      * @param skinName 皮肤名称
+     * @param onComplete 外观设置完成后的回调函数
      */
-    public setupCharacterAppearance(characterId: number, skinName: string): void {
+    public setupCharacterAppearance(characterId: number, skinName: string, onComplete?: () => void): void {
         if (!this.characterNode) {
             console.error('人物节点未设置');
             return;
@@ -90,6 +91,11 @@ export class CharacterManager extends Component {
                 skeletonComponent.setAnimation(0, 'loop', true);
               
                 console.log(`设置角色: ${characterId}, 皮肤: ${skinName}`);
+                
+                // 如果有回调函数，则在设置完成后调用
+                if (onComplete) {
+                    onComplete();
+                }
             } else {
                 console.error('人物节点上没有sp.Skeleton组件');
             }
@@ -98,8 +104,9 @@ export class CharacterManager extends Component {
 
     /**
      * 人物移动到右侧（放行）
+     * @param onComplete 移动完成后的回调函数
      */
-    public moveCharacterRight(): void {
+    public moveCharacterRight(onComplete?: () => void): void {
         if (!this.characterNode || !this.initialPosition) return;
 
         // 隐藏对话框
@@ -125,14 +132,20 @@ export class CharacterManager extends Component {
             .call(() => {
                 // 动画完成回调
                 this.currentAnimation = null;
+                
+                // 如果有完成回调则执行
+                if (onComplete) {
+                    onComplete();
+                }
             })
             .start();
     }
 
     /**
      * 人物移动到左侧（赶走）
+     * @param onComplete 移动完成后的回调函数
      */
-    public moveCharacterLeft(): void {
+    public moveCharacterLeft(onComplete?: () => void): void {
         if (!this.characterNode || !this.initialPosition) return;
 
         // 隐藏对话框
@@ -158,14 +171,20 @@ export class CharacterManager extends Component {
             .call(() => {
                 // 动画完成回调
                 this.currentAnimation = null;
+                
+                // 如果有完成回调则执行
+                if (onComplete) {
+                    onComplete();
+                }
             })
             .start();
     }
 
     /**
      * 新人物从左向右进入
+     * @param onComplete 移动完成后的回调函数
      */
-    public characterEnter(): void {
+    public characterEnter(onComplete?: () => void): void {
         console.log('characterEnter');
         if (!this.characterNode) return;
 
@@ -193,6 +212,11 @@ export class CharacterManager extends Component {
             .call(() => {
                 // 动画完成回调
                 this.currentAnimation = null;
+                
+                // 如果有完成回调则执行
+                if (onComplete) {
+                    onComplete();
+                }
             })
             .start();
     }

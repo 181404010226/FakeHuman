@@ -110,17 +110,17 @@ export class GameFlowManager extends Component {
         // 获取当前NPC数据
         const npc = this.currentNpcs[this.currentNpcIndex];
         
-        // 配置角色外观
-        this.characterManager.setupCharacterAppearance(npc.characterId, npc.skinName);
-        
         // 配置问答对
         this.setupQuestionAnswers(npc.qaPairs);
         
-        // 让角色入场
-        this.characterManager.characterEnter();
-        
-        // 启用按钮
-        this.enableButtons();
+        // 配置角色外观，并在完成后让角色入场
+        this.characterManager.setupCharacterAppearance(npc.characterId, npc.skinName, () => {
+            // 让角色入场（只有在外观设置完成后才执行）
+            this.characterManager.characterEnter();
+            
+            // 启用按钮
+            this.enableButtons();
+        });
     }
 
     /**
@@ -170,13 +170,10 @@ export class GameFlowManager extends Component {
         // 禁用按钮，防止连续点击
         this.disableButtons();
         
-        // 让角色向右移动
-        this.characterManager.moveCharacterRight();
-        
-        // 延迟显示下一个NPC
-        this.scheduleOnce(() => {
+        // 让角色向右移动，动画完成后显示下一个NPC
+        this.characterManager.moveCharacterRight(() => {
             this.showNextNpc();
-        }, this.characterManager.moveDuration + 0.5);
+        });
     }
 
     /**
@@ -186,13 +183,10 @@ export class GameFlowManager extends Component {
         // 禁用按钮，防止连续点击
         this.disableButtons();
         
-        // 让角色向左移动
-        this.characterManager.moveCharacterLeft();
-        
-        // 延迟显示下一个NPC
-        this.scheduleOnce(() => {
+        // 让角色向左移动，动画完成后显示下一个NPC
+        this.characterManager.moveCharacterLeft(() => {
             this.showNextNpc();
-        }, this.characterManager.moveDuration + 0.5);
+        });
     }
 
     /**
