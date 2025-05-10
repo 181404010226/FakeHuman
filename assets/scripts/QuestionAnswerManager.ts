@@ -40,7 +40,7 @@ export class QuestionAnswerManager extends Component {
 
     start() {
         // 初始化默认问答对
-        this.initDefaultQuestionAnswers();
+        // this.initDefaultQuestionAnswers();
         
         // 注册按钮事件
         this.registerButtons();
@@ -101,6 +101,7 @@ export class QuestionAnswerManager extends Component {
      * 更新问题按钮文本
      */
     private updateQuestionButtonTexts(): void {
+        console.log('updateQuestionButtonTexts');
         // 为每个按钮设置对应的问题文本
         for (let i = 0; i < Math.min(this.questionLabels.length, this.currentQuestionIndices.length); i++) {
             const questionIndex = this.currentQuestionIndices[i];
@@ -206,4 +207,30 @@ export class QuestionAnswerManager extends Component {
             this.updateQuestionButtonTexts();
         }
     }
-} 
+    
+    /**
+     * 替换所有问答对并更新显示
+     * @param newQAPairs 新的问答对数组
+     */
+    public replaceAllQuestionAnswers(newQAPairs: QuestionAnswer[]): void {
+      
+        if (!newQAPairs) {
+            return;
+        }
+        
+        // 替换问答对
+        this.questionAnswerPairs = [...newQAPairs];
+        
+        // 重置问题索引为前三个
+        this.currentQuestionIndices = [0, 1, 2];
+        
+        // 如果新问答对数量少于3个，调整索引
+        while (this.currentQuestionIndices.length > 0 && 
+               this.currentQuestionIndices[this.currentQuestionIndices.length - 1] >= this.questionAnswerPairs.length) {
+            this.currentQuestionIndices.pop();
+        }
+        
+        // 更新按钮文本
+        this.updateQuestionButtonTexts();
+    }
+}

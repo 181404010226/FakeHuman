@@ -37,7 +37,7 @@ export class CharacterMovementManager extends Component {
         tooltip: '人物移动距离（像素）'
     })
     moveDistance: number = 300;
-
+    
     private initialPosition: Vec3 = null;
     private currentAnimation: Tween<Node> = null;
 
@@ -55,7 +55,10 @@ export class CharacterMovementManager extends Component {
         if (this.dismissButton) {
             this.dismissButton.node.on(Button.EventType.CLICK, this.moveCharacterLeft, this);
         }
+        
+    
     }
+    
 
     /**
      * 人物移动到右侧（放行）
@@ -127,7 +130,8 @@ export class CharacterMovementManager extends Component {
      * 新人物从左向右进入
      */
     public characterEnter(): void {
-        if (!this.characterNode || !this.initialPosition) return;
+        console.log('characterEnter');
+        if (!this.characterNode) return;
 
         // 隐藏对话框
         if (this.dialogueManager) {
@@ -183,4 +187,4 @@ export class CharacterMovementManager extends Component {
             this.dismissButton.node.off(Button.EventType.CLICK, this.moveCharacterLeft, this);
         }
     }
-} 
+}
