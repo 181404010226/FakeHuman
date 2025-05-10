@@ -118,6 +118,35 @@ export class GameFlowManager extends Component {
         
         // 让角色入场
         this.characterManager.characterEnter();
+        
+        // 启用按钮
+        this.enableButtons();
+    }
+
+    /**
+     * 启用决策按钮
+     */
+    private enableButtons(): void {
+        if (this.allowButton) {
+            this.allowButton.interactable = true;
+        }
+        
+        if (this.dismissButton) {
+            this.dismissButton.interactable = true;
+        }
+    }
+    
+    /**
+     * 禁用决策按钮
+     */
+    private disableButtons(): void {
+        if (this.allowButton) {
+            this.allowButton.interactable = false;
+        }
+        
+        if (this.dismissButton) {
+            this.dismissButton.interactable = false;
+        }
     }
 
     /**
@@ -138,6 +167,9 @@ export class GameFlowManager extends Component {
      * 处理放行角色
      */
     public handleCharacterPassed(): void {
+        // 禁用按钮，防止连续点击
+        this.disableButtons();
+        
         // 让角色向右移动
         this.characterManager.moveCharacterRight();
         
@@ -151,6 +183,9 @@ export class GameFlowManager extends Component {
      * 处理赶走角色
      */
     public handleCharacterDismissed(): void {
+        // 禁用按钮，防止连续点击
+        this.disableButtons();
+        
         // 让角色向左移动
         this.characterManager.moveCharacterLeft();
         
